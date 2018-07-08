@@ -66,14 +66,15 @@ namespace ListViewTest
             listView1.Items.Remove(listView1.SelectedItem);
 
             // if no rows left, add a blank row
-            if (listView1.Items.Count == 0)
+            if (listView1.Items.Count == 0)     //JO pozycjonuje  podświetlenie list view
             {
                 AddRow();
             }
             else if (selectedIndex <= listView1.Items.Count - 1) // otherwise select next row
             {
-                listView1.SelectedIndex = selectedIndex;
+                listView1.SelectedIndex =selectedIndex;
             }
+
             else // not above cases? Select last row
             {
                 listView1.SelectedIndex = listView1.Items.Count - 1;
@@ -99,7 +100,7 @@ namespace ListViewTest
         private void RefreshListView(string value1, string value2)
         {
             ListViewData lvc = (ListViewData)listView1.SelectedItem; //new ListViewClass(value1, value2);
-            if (lvc != null && !stopRefreshControls)
+            if (lvc != null && !stopRefreshControls)  //JO  uaktualnienie danych na list view z pól tekstowych
             {
                 setDataChanged(true);
 
@@ -129,7 +130,7 @@ namespace ListViewTest
         /// <param name="e"></param>
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListViewData lvc = (ListViewData)listView1.SelectedItem;
+            ListViewData lvc = (ListViewData)listView1.SelectedItem;  //JO uaktualnienie  pól tekstowych z list view
             if (lvc != null)
             {
                 stopRefreshControls = true;
@@ -164,14 +165,14 @@ namespace ListViewTest
         /// <summary>
         /// Shows(Loads) data into the ListView
         /// </summary>
-        private void ShowData()
+        private void ShowData()  //JO Ładuje dane z bazy XML  do listview
         {
             MyData md = new MyData();
             listView1.Items.Clear();
 
             foreach (var row in md.GetRows())
             {
-                listView1.Items.Add(row);
+                listView1.Items.Add(row);  // JO wypełnia danymi list view
             }
         }
 
@@ -190,6 +191,7 @@ namespace ListViewTest
                 MyData md = new MyData();
                 md.Save(listView1.Items);
                 setDataChanged(false);
+                
             }
 
             // saveButton.IsEnabled = true;
